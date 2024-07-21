@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const home = document.getElementById('home');
 
+    if (!home) {
+        console.error('Element with ID "home" not found.');
+        return;
+    }
+
     const database = {
         'اعكس ثقافة': [
             'Akher Zapheer - Bel Layl Tnaffast اخر زفير- بالليل تنفَست هوى بيجرح.mp4',
