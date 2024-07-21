@@ -59,18 +59,24 @@ document.addEventListener("DOMContentLoaded", function() {
     function createPartition(partition) {
         const partitionDiv = document.createElement('div');
         partitionDiv.classList.add('partition');
+        partitionDiv.style.backgroundImage = `url('images/${partition.name}.png')`;
+
         const partitionTitle = document.createElement('h2');
         partitionTitle.textContent = partition.name;
         partitionDiv.appendChild(partitionTitle);
+
         partition.videos.forEach(video => {
             const videoItem = document.createElement('div');
             videoItem.classList.add('video-item');
-            const videoLink = document.createElement('a');
-            videoLink.href = `database/${partition.name}/${video}`;
-            videoLink.textContent = video;
-            videoItem.appendChild(videoLink);
+            
+            const videoElement = document.createElement('video');
+            videoElement.controls = true;
+            videoElement.src = `database/${partition.name}/${video}`;
+
+            videoItem.appendChild(videoElement);
             partitionDiv.appendChild(videoItem);
         });
+
         return partitionDiv;
     }
 
