@@ -36,18 +36,31 @@ main {
     padding: 1rem;
     background-size: cover;
     background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .video-card {
     display: inline-block;
     margin-right: 1rem;
+    margin-bottom: 1rem;
     width: 200px;
     position: relative;
+    background-color: #1f1f1f;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.video-card:hover {
+    transform: scale(1.05);
 }
 
 .video-card img.thumbnail {
     width: 100%;
     cursor: pointer;
+    display: block;
 }
 
 .video-card video.video-player {
