@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const home = document.getElementById('home');
+    const videoPlayerTemplate = document.getElementById('video-player-template');
 
     const Database = {
         'اعكس ثقافة': [
@@ -64,19 +65,62 @@ document.addEventListener('DOMContentLoaded', () => {
             const videoCard = document.createElement('div');
             videoCard.className = 'video-card';
 
-            const videoElement = document.createElement('video');
+            const videoPlayerInstance = videoPlayerTemplate.content.cloneNode(true);
+            const videoElement = videoPlayerInstance.querySelector('.video-player');
             videoElement.src = `Database/${encodedFolder}/${encodeURIComponent(video)}`;
-            videoElement.controls = true;
-            videoElement.className = 'video-player';
+            videoElement.controls = false;  // Disable default controls
 
             videoElement.onerror = () => {
                 console.error(`Video not found: ${videoElement.src}`);
             };
 
-            videoCard.appendChild(videoElement);
+            setupCustomControls(videoPlayerInstance, videoElement);
+
+            videoCard.appendChild(videoPlayerInstance);
             partition.appendChild(videoCard);
         });
 
         home.appendChild(partition);
+    }
+
+    function setupCustomControls(videoPlayerInstance, videoElement) {
+        const playPauseButton = videoPlayerInstance.querySelector('.play-pause');
+        const progressBar = videoPlayerInstance.querySelector('.progress-bar');
+        const volumeBar = videoPlayerInstance.querySelector('.volume-bar');
+        const fullscreenButton = videoPlayerInstance.querySelector('.fullscreen');
+
+        playPauseButton.addEventListener('click', () => {
+            if (videoElement.paused) {
+                videoElement.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                videoElement.pause();
+                playPauseButton.textContent = 'Play';
+            }
+        });
+
+        videoElement.addEventListener('timeupdate', () => {
+            const progress = (videoElement.currentTime / videoElement.duration) * 100;
+            progressBar.value = progress;
+        });
+
+        progressBar.addEventListener('input', () => {
+            const time = (progressBar.value / 100) * videoElement.duration;
+            videoElement.currentTime = time;
+        });
+
+        volumeBar.addEventListener('input', () => {
+            videoElement.volume = volumeBar.value;
+        });
+
+        fullscreenButton.addEventListener('click', () => {
+            if (videoElement.requestFullscreen) {
+                videoElement.requestFullscreen();
+            } else if (videoElement.webkitRequestFullscreen) { /* Safari */
+                videoElement.webkitRequestFullscreen();
+            } else if (videoElement.msRequestFullscreen) { /* IE11 */
+                videoElement.msRequestFullscreen();
+            }
+        });
     }
 });

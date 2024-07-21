@@ -72,3 +72,44 @@ main {
     height: 100%; /* Ensure video fills the video card */
     display: block;
 }
+
+/* Custom video player styles */
+.custom-video-player {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    margin: auto;
+    background-color: #000;
+}
+
+.video-player {
+    width: 100%;
+    display: block;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+}
+
+.play-pause,
+.fullscreen {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    margin: 0 8px;
+}
+
+.volume-bar {
+    width: 100px;
+}
