@@ -46,7 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const partition = document.createElement('div');
         partition.className = 'partition';
 
-        const backgroundImagePath = `Database/${folder}/${folder}.png`;
+        const encodedFolder = encodeURIComponent(folder);
+        const backgroundImagePath = `Database/${encodedFolder}/${encodedFolder}.png`;
         console.log(`Setting background image for ${folder} to ${backgroundImagePath}`);
 
         // Create a temporary image element to check if the image exists
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             videoCard.className = 'video-card';
 
             const videoElement = document.createElement('video');
-            videoElement.src = `Database/${folder}/${video}`;
+            videoElement.src = `Database/${encodedFolder}/${encodeURIComponent(video)}`;
             videoElement.controls = true;
             videoElement.className = 'video-player';
 
