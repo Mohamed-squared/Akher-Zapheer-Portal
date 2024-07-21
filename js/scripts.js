@@ -57,6 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
         thumbnail.alt = videoName;
         thumbnail.className = 'thumbnail';
 
+        thumbnail.onerror = () => {
+            console.error(`Thumbnail not found: ${thumbnail.src}`);
+            thumbnail.src = 'path/to/default-thumbnail.jpg'; // Set a default thumbnail if the image is not found
+        };
+
         videoCard.appendChild(thumbnail);
 
         const playVideo = () => {
@@ -73,6 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
             videoElement.autoplay = true;
             videoElement.className = 'video-player';
 
+            videoElement.onerror = () => {
+                console.error(`Video not found: ${videoElement.src}`);
+            };
+
             // Append the video element to the video card
             videoCard.appendChild(videoElement);
         };
@@ -86,6 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const partition = document.createElement('div');
         partition.className = 'partition';
         partition.style.backgroundImage = `url(database/${folder}/${folder}.png)`;
+
+        partition.onerror = () => {
+            console.error(`Partition background image not found: database/${folder}/${folder}.png`);
+        };
 
         videos.forEach(video => {
             const videoCard = createVideoCard(folder, video);
