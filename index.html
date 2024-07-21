@@ -4,195 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akher Zapheer Portal</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            background-color: #333;
-            display: flex;
-            justify-content: space-around;
-        }
-        nav ul li {
-            display: inline;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            padding: 14px 20px;
-            display: inline-block;
-        }
-        nav ul li a:hover {
-            background-color: #111;
-        }
-        .tab-content {
-            margin: 20px;
-        }
-        .partition {
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        .partition h2 {
-            margin: 0 0 10px 0;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 8px;
-        }
-        .video-item {
-            display: inline-block;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            width: 200px;
-            transition: transform 5s linear;
-            animation: slide-left 20s infinite linear;
-        }
-        .video-item video {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        @keyframes slide-left {
-            from {
-                transform: translateX(100%);
-            }
-            to {
-                transform: translateX(-100%);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#player">Player</a></li>
-            <li><a href="#add">Add</a></li>
-            <li><a href="#the-band">The Band</a></li>
-        </ul>
-    </nav>
-
-    <!-- Home Tab Content -->
-    <div id="home" class="tab-content">
-        <h1>Akher Zapheer Concert Videos</h1>
-        <div id="albums">
-            <!-- Album partitions will be dynamically inserted here by JavaScript -->
-        </div>
-    </div>
-
-    <!-- Placeholder for Player Tab Content -->
-    <div id="player" class="tab-content" style="display:none;">
-        <h1>Player - Coming Soon</h1>
-    </div>
-
-    <!-- Placeholder for Add Tab Content -->
-    <div id="add" class="tab-content" style="display:none;">
-        <h1>Add - Coming Soon</h1>
-    </div>
-
-    <!-- Placeholder for The Band Tab Content -->
-    <div id="the-band" class="tab-content" style="display:none;">
-        <h1>The Band - Coming Soon</h1>
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const albumsDiv = document.getElementById('albums');
-
-            // Sample data structure representing the database
-            const database = [
-                {
-                    name: 'اعكس ثقافة',
-                    videos: [
-                        'Akher Zapheer - Bel Layl Tnaffast اخر زفير- بالليل تنفَست هوى بيجرح.mp4',
-                        'Akherto Lahen Hazeen.mp4',
-                        'Arba Sneen.mp4',
-                        'Bteghwee.mp4',
-                        'Cacharel.mp4',
-                        'Dayman Mawjood.mp4',
-                        'Feekee.mp4',
-                        'Keef Akoun Sadeeq.mp4',
-                        'Laylee Tal.mp4',
-                        'Tahet El Bahar El Mayyet.mp4',
-                        'Testai Metel El Shams.mp4'
-                    ]
-                },
-                {
-                    name: 'ام الموسيقى',
-                    videos: [
-                        'Ballet.mp4',
-                        'Batlasha.mp4',
-                        'El-Khotta.mp4',
-                        'Emm el Mousiqa.mp4',
-                        'Ghubar Njoom.mp4',
-                        'Ismo Albi (Live).mp4',
-                        'Metfaje.mp4',
-                        'Mohbat.mp4',
-                        'Zay El Qetar.mp4'
-                    ]
-                },
-                {
-                    name: 'ثعبان',
-                    videos: [
-                        'Jumanji.mp4',
-                        'Khatem.mp4',
-                        'Ma3maqni.mp4',
-                        'Shakhsi El Daem.mp4',
-                        'Tasbeereh.mp4',
-                        'Tho3ban.mp4',
-                        'Urtuwazi.mp4'
-                    ]
-                },
-                {
-                    name: 'مش فن',
-                    videos: [
-                        '80.mp4',
-                        'Mesh Fann.mp4',
-                        'Mesh Sahel.mp4'
-                    ]
-                }
-            ];
-
-            // Function to create partitions
-            function createPartition(partition) {
-                const partitionDiv = document.createElement('div');
-                partitionDiv.classList.add('partition');
-                partitionDiv.style.backgroundImage = `url('images/${partition.name}.png')`;
-
-                const partitionTitle = document.createElement('h2');
-                partitionTitle.textContent = partition.name;
-                partitionDiv.appendChild(partitionTitle);
-
-                partition.videos.forEach(video => {
-                    const videoItem = document.createElement('div');
-                    videoItem.classList.add('video-item');
-                    
-                    const videoElement = document.createElement('video');
-                    videoElement.controls = true;
-                    videoElement.src = `database/${partition.name}/${video}`;
-
-                    videoItem.appendChild(videoElement);
-                    partitionDiv.appendChild(videoItem);
-                });
-
-                return partitionDiv;
-            }
-
-            // Populate albums div with partitions
-            database.forEach(partition => {
-                albumsDiv.appendChild(createPartition(partition));
-            });
-        });
-    </script>
+    <header>
+        <h1>Akher Zapheer Portal</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="player.html">Player</a></li>
+                <li><a href="add.html">Add</a></li>
+                <li><a href="theband.html">The Band</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="home">
+        <!-- Dynamic content will be loaded here -->
+    </main>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
