@@ -51,11 +51,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const videoCard = document.createElement('div');
             videoCard.className = 'video-card';
 
-            const videoElement = document.createElement('video');
-            videoElement.src = `database/${folder}/${video}`;
-            videoElement.controls = true;
+            const thumbnail = document.createElement('img');
+            const videoName = video.replace(/\.mp4$/, '');
+            thumbnail.src = `database/${folder}/${videoName}.jpg`;
+            thumbnail.alt = videoName;
+            thumbnail.className = 'thumbnail';
 
-            videoCard.appendChild(videoElement);
+            videoCard.appendChild(thumbnail);
+
+            thumbnail.addEventListener('click', () => {
+                const videoElement = document.createElement('video');
+                videoElement.src = `database/${folder}/${video}`;
+                videoElement.controls = true;
+                videoCard.appendChild(videoElement);
+            });
+
             partition.appendChild(videoCard);
         });
 
