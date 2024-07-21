@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         videoCard.appendChild(thumbnail);
 
-        thumbnail.addEventListener('click', () => {
+        const playVideo = () => {
             // Remove any existing video elements
             const existingVideo = videoCard.querySelector('video');
             if (existingVideo) {
@@ -70,7 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Append the video element to the video card
             videoCard.appendChild(videoElement);
-        });
+        };
+
+        thumbnail.addEventListener('click', playVideo);
 
         return videoCard;
     };
