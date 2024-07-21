@@ -39,6 +39,27 @@ main {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     background-color: #1f1f1f; /* Fallback color if background image fails */
+    position: relative;
+    overflow: hidden;
+}
+
+.partition::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    background-image: inherit; /* Use the same background image */
+    filter: blur(10px);
+    z-index: 0;
+}
+
+.partition > * {
+    position: relative;
+    z-index: 1;
 }
 
 .video-card {
