@@ -42,30 +42,46 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
+    const createVideoCard = (folder, video) => {
+        const videoCard = document.createElement('div');
+        videoCard.className = 'video-card';
+
+        const thumbnail = document.createElement('img');
+        const videoName = video.replace(/\.mp4$/, '');
+        thumbnail.src = `database/${folder}/${videoName}.jpg`;
+        thumbnail.alt = videoName;
+        thumbnail.className = 'thumbnail';
+
+        videoCard.appendChild(thumbnail);
+
+        thumbnail.addEventListener('click', () => {
+            // Remove any existing video elements
+            const existingVideo = videoCard.querySelector('video');
+            if (existingVideo) {
+                existingVideo.remove();
+            }
+
+            // Create a new video element
+            const videoElement = document.createElement('video');
+            videoElement.src = `database/${folder}/${video}`;
+            videoElement.controls = true;
+            videoElement.autoplay = true;
+            videoElement.className = 'video-player';
+
+            // Append the video element to the video card
+            videoCard.appendChild(videoElement);
+        });
+
+        return videoCard;
+    };
+
     for (const [folder, videos] of Object.entries(database)) {
         const partition = document.createElement('div');
         partition.className = 'partition';
         partition.style.backgroundImage = `url(database/${folder}/${folder}.png)`;
 
         videos.forEach(video => {
-            const videoCard = document.createElement('div');
-            videoCard.className = 'video-card';
-
-            const thumbnail = document.createElement('img');
-            const videoName = video.replace(/\.mp4$/, '');
-            thumbnail.src = `database/${folder}/${videoName}.jpg`;
-            thumbnail.alt = videoName;
-            thumbnail.className = 'thumbnail';
-
-            videoCard.appendChild(thumbnail);
-
-            thumbnail.addEventListener('click', () => {
-                const videoElement = document.createElement('video');
-                videoElement.src = `database/${folder}/${video}`;
-                videoElement.controls = true;
-                videoCard.appendChild(videoElement);
-            });
-
+            const videoCard = createVideoCard(folder, video);
             partition.appendChild(videoCard);
         });
 
