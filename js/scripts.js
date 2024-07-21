@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         partition.style.backgroundImage = `url(Database/${folder}/${folder}.png)`;
 
         partition.onerror = () => {
-            console.error(`Partition background image not found: database/${folder}/${folder}.png`);
+            console.error(`Partition background image not found: Database/${folder}/${folder}.png`);
         };
 
         videos.forEach(video => {
