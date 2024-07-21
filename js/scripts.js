@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const home = document.getElementById('home');
 
-    const database = {
+    const Database = {
         'اعكس ثقافة': [
             'Akher Zapheer - Bel Layl Tnaffast اخر زفير- بالليل تنفَست هوى بيجرح.mp4',
             'Akherto Lahen Hazeen.mp4',
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (const [folder, videos] of Object.entries(database)) {
         const partition = document.createElement('div');
         partition.className = 'partition';
-        partition.style.backgroundImage = `url(database/${folder}/${folder}.png)`;
+        partition.style.backgroundImage = `url(Database/${folder}/${folder}.png)`;
 
         partition.onerror = () => {
             console.error(`Partition background image not found: database/${folder}/${folder}.png`);
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             videoCard.className = 'video-card';
 
             const videoElement = document.createElement('video');
-            videoElement.src = `database/${folder}/${video}`;
+            videoElement.src = `Database/${folder}/${video}`;
             videoElement.controls = true;
             videoElement.className = 'video-player';
 
