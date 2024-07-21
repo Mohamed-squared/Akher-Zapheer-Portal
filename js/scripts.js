@@ -1,11 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const home = document.getElementById('home');
 
-    if (!home) {
-        console.error('Element with ID "home" not found.');
-        return;
-    }
-
     const database = {
         'اعكس ثقافة': [
             'Akher Zapheer - Bel Layl Tnaffast اخر زفير- بالليل تنفَست هوى بيجرح.mp4',
@@ -47,50 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
-    const createVideoCard = (folder, video) => {
-        const videoCard = document.createElement('div');
-        videoCard.className = 'video-card';
-
-        const thumbnail = document.createElement('img');
-        const videoName = video.replace(/\.mp4$/, '');
-        thumbnail.src = `database/${folder}/${videoName}.jpg`;
-        thumbnail.alt = videoName;
-        thumbnail.className = 'thumbnail';
-
-        thumbnail.onerror = () => {
-            console.error(`Thumbnail not found: ${thumbnail.src}`);
-            thumbnail.src = 'path/to/default-thumbnail.jpg'; // Set a default thumbnail if the image is not found
-        };
-
-        videoCard.appendChild(thumbnail);
-
-        const playVideo = () => {
-            // Remove any existing video elements
-            const existingVideo = videoCard.querySelector('video');
-            if (existingVideo) {
-                existingVideo.remove();
-            }
-
-            // Create a new video element
-            const videoElement = document.createElement('video');
-            videoElement.src = `database/${folder}/${video}`;
-            videoElement.controls = true;
-            videoElement.autoplay = true;
-            videoElement.className = 'video-player';
-
-            videoElement.onerror = () => {
-                console.error(`Video not found: ${videoElement.src}`);
-            };
-
-            // Append the video element to the video card
-            videoCard.appendChild(videoElement);
-        };
-
-        thumbnail.addEventListener('click', playVideo);
-
-        return videoCard;
-    };
-
     for (const [folder, videos] of Object.entries(database)) {
         const partition = document.createElement('div');
         partition.className = 'partition';
@@ -101,7 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         videos.forEach(video => {
-            const videoCard = createVideoCard(folder, video);
+            const videoCard = document.createElement('div');
+            videoCard.className = 'video-card';
+
+            const videoElement = document.createElement('video');
+            videoElement.src = `database/${folder}/${video}`;
+            videoElement.controls = true;
+            videoElement.className = 'video-player';
+
+            videoElement.onerror = () => {
+                console.error(`Video not found: ${videoElement.src}`);
+            };
+
+            videoCard.appendChild(videoElement);
             partition.appendChild(videoCard);
         });
 
