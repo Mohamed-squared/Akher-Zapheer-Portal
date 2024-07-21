@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const home = document.getElementById('home');
 
-    const Database = {
+    const database = {
         'اعكس ثقافة': [
             'Akher Zapheer - Bel Layl Tnaffast اخر زفير- بالليل تنفَست هوى بيجرح.mp4',
             'Akherto Lahen Hazeen.mp4',
