@@ -46,12 +46,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const partition = document.createElement('div');
         partition.className = 'partition';
 
-        // Correct background image path handling
-        const backgroundImagePath = `Database/${folder}/${folder.replace(/\s/g, '_')}.png`;
+        const backgroundImagePath = `Database/${folder}/${folder}.png`;
         console.log(`Setting background image for ${folder} to ${backgroundImagePath}`);
-        partition.style.backgroundImage = `url(${backgroundImagePath})`;
 
-        partition.onerror = () => {
+        // Create a temporary image element to check if the image exists
+        const img = new Image();
+        img.src = backgroundImagePath;
+        img.onload = () => {
+            partition.style.backgroundImage = `url(${backgroundImagePath})`;
+        };
+        img.onerror = () => {
             console.error(`Partition background image not found: ${backgroundImagePath}`);
         };
 
