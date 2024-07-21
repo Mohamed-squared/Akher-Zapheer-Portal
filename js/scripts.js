@@ -45,10 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
     for (const [folder, videos] of Object.entries(Database)) {
         const partition = document.createElement('div');
         partition.className = 'partition';
-        partition.style.backgroundImage = `url(Database/${folder}/${folder}.png)`;
+
+        // Correct background image path handling
+        const backgroundImagePath = `Database/${folder}/${folder.replace(/\s/g, '_')}.png`;
+        console.log(`Setting background image for ${folder} to ${backgroundImagePath}`);
+        partition.style.backgroundImage = `url(${backgroundImagePath})`;
 
         partition.onerror = () => {
-            console.error(`Partition background image not found: Database/${folder}/${folder}.png`);
+            console.error(`Partition background image not found: ${backgroundImagePath}`);
         };
 
         videos.forEach(video => {
