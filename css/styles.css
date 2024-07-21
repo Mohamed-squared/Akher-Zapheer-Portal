@@ -38,13 +38,15 @@ main {
     background-position: center;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #1f1f1f; /* Fallback color if background image fails */
 }
 
 .video-card {
     display: inline-block;
     margin-right: 1rem;
     margin-bottom: 1rem;
-    width: 200px;
+    width: 250px; /* Increased width */
+    height: 150px; /* Standardized height */
     position: relative;
     background-color: #1f1f1f;
     border-radius: 5px;
@@ -59,12 +61,14 @@ main {
 
 .video-card img.thumbnail {
     width: 100%;
+    height: 100%; /* Ensure image fills the video card */
+    object-fit: cover; /* Cover the entire area */
     cursor: pointer;
     display: block;
 }
 
 .video-card video.video-player {
     width: 100%;
-    margin-top: 5px;
+    height: 100%; /* Ensure video fills the video card */
     display: block;
 }
