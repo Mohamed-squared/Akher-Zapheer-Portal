@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
-    for (const [folder, videos] of Object.entries(database)) {
+    for (const [folder, videos] of Object.entries(Database)) {
         const partition = document.createElement('div');
         partition.className = 'partition';
         partition.style.backgroundImage = `url(Database/${folder}/${folder}.png)`;
